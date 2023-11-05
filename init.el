@@ -264,9 +264,10 @@
   (setq org-log-into-drawer t)
 
   (setq org-agenda-files
-        '("~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org"
-          "~/Projects/Code/emacs-from-scratch/OrgFiles/Habits.org"
-          "~/Projects/Code/emacs-from-scratch/OrgFiles/Birthdays.org"))
+        '("D:/OrgFiles/Tasks.org"
+          "D:/OrgFiles/Habits.org"
+          "D:/OrgFiles/Birthdays.org"
+          "D:/OrgFiles/Meetings.org"))
 
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
@@ -610,16 +611,3 @@
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt vterm eterm-256color rainbow-delimiters evil-nerd-commenter forge magit counsel-projectile projectile company-box company pyvenv python-mode typescript-mode dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode visual-fill-column org-bullets hydra which-key no-littering ivy-rich ivy-prescient helpful general evil-collection doom-themes doom-modeline counsel command-log-mode auto-package-update all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
