@@ -181,6 +181,9 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
       :global-prefix "C-SPC")
 
     (efs/leader-keys
+      "a" '(org-agenda :which-key "org-agenda"))
+    
+    (efs/leader-keys
       "t"  '(:ignore t :which-key "toggles")
       "tt" '(counsel-load-theme :which-key "choose theme")
       "fde" '(lambda () (interactive) (find-file (expand-file-name "~/.emacs.d/Emacs.org")))))
@@ -514,18 +517,18 @@ This section contains the basic configuration for =org-mode= plus the configurat
 
       (setq org-capture-templates
         `(("t" "Tasks / Projects")
-          ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
+          ("tt" "Task" entry (file+olp "D:/OrgFiles/Tasks.org" "Inbox")
                "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
           ("j" "Journal Entries")
           ("jj" "Journal" entry
-               (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+               (file+olp+datetree "D:/OrgFiles/Journal.org")
                "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
                ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
                :clock-in :clock-resume
                :empty-lines 1)
           ("jm" "Meeting" entry
-               (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+               (file+olp+datetree "D:/OrgFiles/Journal.org")
                "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
                :clock-in :clock-resume
                :empty-lines 1)
@@ -535,7 +538,7 @@ This section contains the basic configuration for =org-mode= plus the configurat
                "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
 
           ("m" "Metrics Capture")
-          ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
+          ("mw" "Weight" table-line (file+headline "D:/OrgFiles/Metrics.org" "Weight")
            "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
 
       (define-key global-map (kbd "C-c j")
