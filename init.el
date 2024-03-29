@@ -582,59 +582,5 @@
 
   (eshell-git-prompt-use-theme 'powerline))
 
-;; WEB MODE
-  (use-package web-mode
-    :ensure t)
-
-;; ASTRO
-(define-derived-mode astro-mode web-mode "astro")
-(setq auto-mode-alist
-      (append '((".*\\.astro\\'" . astro-mode))
-              auto-mode-alist))
-
-  ;; EGLOT
-  (use-package eglot
-    :ensure t
-    :config
-    (add-to-list 'eglot-server-programs
-         '(astro-mode . ("astro-ls" "--stdio"
-                         :initializationOptions
-                         (:typescript (:tsdk "./node_modules/typescript/lib")))))
-    :init
-    ;; auto start eglot for astro-mode
-    (add-hook 'astro-mode-hook 'eglot-ensure))
-
-    )
-
-(use-package dired
-  :ensure nil
-  :commands (dired dired-jump)
-  :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first"))
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer))
-
-(use-package dired-single
-  :commands (dired dired-jump))
-
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
-
-(use-package dired-open
-  :commands (dired dired-jump)
-  :config
-  ;; Doesn't work as expected!
-  ;;(add-to-list 'dired-open-functions #'dired-open-xdg t)
-  (setq dired-open-extensions '(("png" . "feh")
-                                ("mkv" . "mpv"))))
-
-(use-package dired-hide-dotfiles
-  :hook (dired-mode . dired-hide-dotfiles-mode)
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "H" 'dired-hide-dotfiles-mode))
-
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
