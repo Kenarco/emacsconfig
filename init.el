@@ -72,7 +72,7 @@
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
-
+(setq make-backup-files nil)
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
@@ -586,6 +586,26 @@
   (use-package web-mode
     :ensure t)
 
+;; ASTRO
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+              auto-mode-alist))
+
+  ;; EGLOT
+  (use-package eglot
+    :ensure t
+    :config
+    (add-to-list 'eglot-server-programs
+         '(astro-mode . ("astro-ls" "--stdio"
+                         :initializationOptions
+                         (:typescript (:tsdk "./node_modules/typescript/lib")))))
+    :init
+    ;; auto start eglot for astro-mode
+    (add-hook 'astro-mode-hook 'eglot-ensure))
+
+    )
+
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
@@ -618,16 +638,3 @@
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(which-key web-mode vterm visual-fill-column use-package typescript-mode rainbow-delimiters pyvenv python-mode org-bullets no-littering lsp-ui lsp-ivy ivy-rich ivy-prescient helpful general forge evil-nerd-commenter evil-collection eterm-256color eshell-git-prompt eglot doom-themes doom-modeline dired-single dired-open dired-hide-dotfiles dap-mode counsel-projectile company-box command-log-mode auto-package-update all-the-icons-dired)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

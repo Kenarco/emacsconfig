@@ -130,7 +130,7 @@ This section configures basic UI settings that remove unneeded elements to make 
 
   (column-number-mode)
   (global-display-line-numbers-mode t)
-
+  (setq make-backup-files nil)
   ;; Set frame transparency
   (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
   (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
@@ -145,7 +145,7 @@ This section configures basic UI settings that remove unneeded elements to make 
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-  
+
 #+end_src
 
 ** Font Configuration
